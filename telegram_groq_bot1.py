@@ -8,13 +8,10 @@ from telegram.ext import (
 )
 
 from groq import Groq
+import os
 
-# ======================
-# SOZLAMALAR
-# ======================
-
-BOT_TOKEN = "BOT_TOKEN"
-GROQ_API_KEY = "GROQ_API_KEY"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 client = Groq(api_key=GROQ_API_KEY)
 
@@ -90,5 +87,8 @@ def main():
 
     app.run_polling()
 
+import asyncio
+
 if __name__ == "__main__":
+    asyncio.set_event_loop(asyncio.new_event_loop())
     main()
